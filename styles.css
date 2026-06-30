@@ -76,28 +76,37 @@ a{color:inherit}
 .fb-pick{margin:16px 0 0}
 .hl{background:var(--yellow);box-shadow:0 0 0 4px var(--yellow);font-weight:700;border-radius:2px}
 
-/* groups & grid */
-.groups{margin-top:46px;display:flex;flex-direction:column;gap:44px}
+/* groups as bounded exploration panels */
+.groups{margin-top:46px;display:flex;flex-direction:column;gap:30px}
+.group{background:#f6f4ff;border:2px solid #e7e0ff;border-radius:22px;padding:24px 24px 26px}
+.alt .group{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
+.now .group{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
 .group-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px}
-.group-label{font-weight:900;font-size:clamp(18px,2.4vw,26px);background:var(--yellow);color:#000;
-  padding:3px 10px;border-radius:6px;line-height:1.3}
-.group-blurb{font-size:15px;opacity:.85;max-width:520px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
-.grid-now{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.group-label{font-weight:900;font-size:clamp(17px,2.2vw,23px);background:var(--yellow);color:#000;
+  padding:3px 11px;border-radius:7px;line-height:1.3}
+.group-blurb{font-size:14.5px;opacity:.85;max-width:560px}
 
-.card{margin:0;position:relative}
-.thumb{display:block;width:100%;padding:0;border:0;background:#eceaf6;border-radius:14px;overflow:hidden;
-  cursor:zoom-in;aspect-ratio:1/1;line-height:0}
+/* uniform square grid with 2×2 featured picks (dense packing) */
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;grid-auto-flow:dense}
+.grid-now{grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(3,1fr)}.grid-now{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:440px){.grid{grid-template-columns:repeat(2,1fr)}.grid-now{grid-template-columns:repeat(2,1fr)}}
+
+.card{margin:0}
+.card.featured{grid-column:span 2;grid-row:span 2}
+.thumb{position:relative;display:block;width:100%;padding:0;border:0;background:#eceaf6;border-radius:14px;
+  overflow:hidden;cursor:zoom-in;aspect-ratio:1/1;line-height:0}
 .now .thumb,.alt .thumb{background:rgba(255,255,255,.08)}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .thumb:hover img{transform:scale(1.05)}
-.card.pick .thumb{outline:4px solid var(--purple);outline-offset:0}
-.alt .card.pick .thumb{outline-color:var(--yellow)}
-.card figcaption{display:flex;flex-direction:column;gap:4px;margin-top:9px}
-.chip{align-self:flex-start;font-weight:900;font-size:11px;letter-spacing:.04em;text-transform:uppercase;
-  background:var(--purple);color:#fff;padding:4px 9px;border-radius:999px;border:2px solid #000}
-.alt .chip{background:var(--yellow);color:#000}
-.note{font-size:12.5px;opacity:.85;line-height:1.3}
+.featured .thumb{box-shadow:0 0 0 4px var(--purple);border-radius:16px}
+.alt .featured .thumb{box-shadow:0 0 0 4px var(--yellow)}
+.badge{position:absolute;top:10px;left:10px;z-index:2;font-weight:900;font-size:11px;letter-spacing:.04em;
+  text-transform:uppercase;background:var(--purple);color:#fff;padding:5px 10px;border-radius:999px;border:2px solid #000}
+.alt .badge{background:var(--yellow);color:#000}
+.cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 14px 12px;line-height:1.25;
+  font-weight:800;font-size:14px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.82));text-align:left}
 
 /* footer */
 .foot{background:var(--purple);color:#fff;padding:40px 24px;display:flex;justify-content:space-between;
